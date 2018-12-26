@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Fingerprint2 from 'fingerprintjs2';
 import { Redirect } from 'react-router-dom';
 import queryString from 'query-string';
 import Button from '@material-ui/core/Button';
@@ -25,10 +26,17 @@ class SignUp extends Component {
   };
 
   componentDidMount() {
-    const { location } = this.props;
+    const { location, createFingerPrint } = this.props;
     const queryParams = queryString.parse(location.search);
 
     this.setState(queryParams);
+
+    new Fingerprint2().get((hash) => {
+      createFingerPrint({
+        email: queryParams.email,
+        hash,
+      });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {

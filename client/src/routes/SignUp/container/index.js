@@ -1,6 +1,6 @@
 import connect from 'react-redux/es/connect/connect';
 import SignUp from '../components';
-import { checkUserInit, joinGroupInit } from '../modules/actions';
+import { checkUserInit, joinGroupInit, createFingerPrintInit } from '../modules/actions';
 import { signUpInit } from '../../LoginForm/modules/actions';
 
 const mapStateToProps = state => ({
@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   checkUser: payload => dispatch(checkUserInit(payload)),
   joinGroup: payload => dispatch(joinGroupInit(payload)),
   signUp: payload => dispatch(signUpInit(payload)),
+  createFingerPrint: payload => dispatch(createFingerPrintInit(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

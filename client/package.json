@@ -11,6 +11,7 @@
     "dateformat": "^3.0.3",
     "detect-browser": "^3.0.1",
     "eslint-config-react-app": "^3.0.4",
+    "fingerprintjs2": "^1.8.6",
     "history": "^4.7.2",
     "ip": "^1.1.5",
     "jwt-decode": "^2.2.0",
