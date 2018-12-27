@@ -9,6 +9,9 @@ import {
   SIGN_UP_INIT,
   SIGN_UP_SUCCESS,
   SIGN_UP_ERROR,
+  SCAN_FINGERPRINT_INIT,
+  SCAN_FINGERPRINT_SUCCESS,
+  SCAN_FINGERPRINT_ERROR,
 } from './types';
 
 export default (state, action) => ({
@@ -87,5 +90,19 @@ export default (state, action) => ({
       personalInfo: {},
     },
     error: action.payload,
+  }),
+  [SCAN_FINGERPRINT_INIT]: () => ({
+    ...state,
+    isFetching: true,
+  }),
+  [SCAN_FINGERPRINT_SUCCESS]: () => ({
+    ...state,
+    isFetching: false,
+    confirmedFingerPrint: action.payload,
+  }),
+  [SCAN_FINGERPRINT_ERROR]: () => ({
+    ...state,
+    isFetching: false,
+    confirmedFingerPrint: false,
   }),
 });

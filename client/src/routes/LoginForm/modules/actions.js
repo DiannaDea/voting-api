@@ -9,6 +9,9 @@ import {
   SIGN_UP_INIT,
   SIGN_UP_SUCCESS,
   SIGN_UP_ERROR,
+  SCAN_FINGERPRINT_INIT,
+  SCAN_FINGERPRINT_SUCCESS,
+  SCAN_FINGERPRINT_ERROR,
 } from './types';
 
 export const signInInit = payload => ({
@@ -60,3 +63,17 @@ export const signUpError = payload => ({
   payload,
 });
 
+export const scanFingerPrintInit = payload => ({
+  type: SCAN_FINGERPRINT_INIT,
+  payload,
+});
+
+export const scanFingerPrintSuccess = payload => ({
+  type: SCAN_FINGERPRINT_SUCCESS,
+  payload,
+});
+
+export const scanFingerPrintError = payload => ({
+  type: SCAN_FINGERPRINT_ERROR,
+  payload,
+});

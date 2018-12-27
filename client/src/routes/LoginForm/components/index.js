@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Fingerprint2 from 'fingerprintjs2';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
@@ -72,8 +73,21 @@ class LoginForm extends Component {
       });
     };
 
+    scanFingerPrint = () => {
+      const { email } = this.state;
+      const { scanFingerPrint } = this.props;
+
+      new Fingerprint2().get((hash) => {
+        scanFingerPrint({
+          email, hash,
+        });
+      });
+    };
+
     render() {
-      const { signIn, classes, languageText } = this.props;
+      const {
+        signIn, classes, languageText,
+      } = this.props;
       const { email, password } = this.state;
 
       return (
@@ -118,6 +132,15 @@ class LoginForm extends Component {
                           onChange={event => this.handleChange(event, 'password')}
                         />
                       </FormControl>
+                      <Button
+                        fullWidth
+                        variant='contained'
+                        color='primary'
+                        className={classes.submit}
+                        onClick={this.scanFingerPrint}
+                      >
+                            Scan fingerprint
+                      </Button>
                       <Button
                         fullWidth
                         variant='contained'

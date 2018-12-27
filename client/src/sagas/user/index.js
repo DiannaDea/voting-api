@@ -3,6 +3,7 @@ import {
   SIGN_IN_INIT,
   GET_USER_INIT,
   SIGN_UP_INIT,
+  SCAN_FINGERPRINT_INIT,
 } from '../../routes/LoginForm/modules/types';
 import {
   GET_AUTH_STAT_INIT,
@@ -18,6 +19,7 @@ import signUp from './signUp';
 import votesStat from './votesActivity';
 import authStat from './getAuthStat';
 import createFingerPrint from './createFingerPrint';
+import scanFingerPrint from './scanFingerPrint';
 
 export default function* groups() {
   yield takeEvery(SIGN_IN_INIT, signIn);
@@ -26,4 +28,5 @@ export default function* groups() {
   yield takeEvery(GET_VOTE_STAT_INIT, votesStat);
   yield takeEvery(GET_AUTH_STAT_INIT, authStat);
   yield takeEvery(CREATE_FINGERPRINT_INIT, createFingerPrint);
+  yield takeEvery(SCAN_FINGERPRINT_INIT, scanFingerPrint);
 }
