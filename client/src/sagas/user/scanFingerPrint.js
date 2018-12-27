@@ -12,7 +12,7 @@ export default function* scanFingerPrint({ payload }) {
 
   try {
     const response = yield call(axios, {
-      url: `${IOT_URL}/fingerprint?email=${email}&&hash=${hash}`,
+      url: `${IOT_URL}/fingerprint?email=${email}&hash=${hash}`,
       method: 'get',
     });
     const fingerprint = response.status !== 204;
