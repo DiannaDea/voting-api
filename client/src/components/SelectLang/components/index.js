@@ -35,7 +35,7 @@ class SelectLang extends Component {
         <MenuItem value='en'>
           <em>EN</em>
         </MenuItem>
-        <MenuItem value='ru'>RU</MenuItem>
+        <MenuItem value='ru'>UA</MenuItem>
       </Select>
     );
   }

@@ -110,6 +110,7 @@ export default {
     lastName: 'Last Name',
     nickName: 'Nickname',
     btnSignUp: 'Sign up',
+    buttonScanFingerPrint: 'Scan fingerprint',
   },
   groupMembers: {
     title: 'Get in touch with you group memebers',

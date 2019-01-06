@@ -175,7 +175,7 @@ class SignUp extends Component {
                       className={classes.submit}
                       onClick={this.openFingerPrintPopup}
                     >
-                        Scan fingerprint
+                      {languageText.buttonScanFingerPrint}
                     </Button>
                     <Button
                       fullWidth

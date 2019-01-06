@@ -11,14 +11,10 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import SelectLang from '../../../components/SelectLang';
 import ScanFingerPrintPopup from './ScanFingerPrint';
 
-import loginBg from '../assets/loginBg.jpg';
-
 const styles = theme => ({
   loginContainer: {
     width: '100vw',
     height: '100vh',
-    backgroundImage: `url(${loginBg})`,
-    backgroundSize: 'cover',
     position: 'absolute',
     top: 0,
   },
