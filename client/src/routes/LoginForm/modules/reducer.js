@@ -12,6 +12,9 @@ import {
   SCAN_FINGERPRINT_INIT,
   SCAN_FINGERPRINT_SUCCESS,
   SCAN_FINGERPRINT_ERROR,
+  CREATE_FINGERPRINT_INIT,
+  CREATE_FINGERPRINT_SUCCESS,
+  CREATE_FINGERPRINT_ERROR,
 } from './types';
 
 export default (state, action) => ({
@@ -101,6 +104,20 @@ export default (state, action) => ({
     confirmedFingerPrint: (action.payload) ? 'ok' : 'not ok',
   }),
   [SCAN_FINGERPRINT_ERROR]: () => ({
+    ...state,
+    isFetching: false,
+    confirmedFingerPrint: 'not ok',
+  }),
+  [CREATE_FINGERPRINT_INIT]: () => ({
+    ...state,
+    isFetching: true,
+  }),
+  [CREATE_FINGERPRINT_SUCCESS]: () => ({
+    ...state,
+    isFetching: false,
+    confirmedFingerPrint: (action.payload) ? 'ok' : 'not ok',
+  }),
+  [CREATE_FINGERPRINT_ERROR]: () => ({
     ...state,
     isFetching: false,
     confirmedFingerPrint: 'not ok',

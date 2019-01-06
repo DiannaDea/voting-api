@@ -5,9 +5,6 @@ import {
   CHECK_USER_EXISTS_INIT,
   CHECK_USER_EXISTS_SUCCESS,
   CHECK_USER_EXISTS_ERROR,
-  CREATE_FINGERPRINT_INIT,
-  CREATE_FINGERPRINT_SUCCESS,
-  CREATE_FINGERPRINT_ERROR,
 } from './types';
 
 export default (state, action) => ({
@@ -42,17 +39,5 @@ export default (state, action) => ({
     isFetching: false,
     userToCheck: {},
     error: action.payload,
-  }),
-  [CREATE_FINGERPRINT_INIT]: () => ({
-    ...state,
-    isFetching: true,
-  }),
-  [CREATE_FINGERPRINT_SUCCESS]: () => ({
-    ...state,
-    isFetching: false,
-  }),
-  [CREATE_FINGERPRINT_ERROR]: () => ({
-    ...state,
-    isFetching: false,
   }),
 });

@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import omit from 'lodash.omit';
 import FormInput from '../../../components/FormInput';
+import ScanFingerPrintPopup from '../../LoginForm/components/ScanFingerPrint';
 
 import styles from '../../../components/FormInput/styles';
 
@@ -23,20 +24,25 @@ class SignUp extends Component {
     firstName: '',
     lastName: '',
     nickname: '',
+    scanFingerPrintModalOpened: false,
+    confirmedFingerPrint: this.props.confirmedFingerPrint,
   };
 
   componentDidMount() {
-    const { location, createFingerPrint } = this.props;
+    const { location } = this.props;
     const queryParams = queryString.parse(location.search);
 
     this.setState(queryParams);
+  }
 
-    new Fingerprint2().get((hash) => {
-      createFingerPrint({
-        email: queryParams.email,
-        hash,
-      });
-    });
+  static getDerivedStateFromProps(props, state) {
+    if (props.confirmedFingerPrint !== state.confirmedFingerPrint && state.scanFingerPrintModalOpened) {
+      return {
+        confirmedFingerPrint: props.confirmedFingerPrint,
+        scanFingerPrintModalOpened: false,
+      };
+    }
+    return null;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,6 +80,33 @@ class SignUp extends Component {
     });
   };
 
+  createFingerPrint = () => {
+    const { location, createFingerPrint } = this.props;
+    const queryParams = queryString.parse(location.search);
+
+    this.setState(queryParams);
+
+    new Fingerprint2().get((hash) => {
+      createFingerPrint({
+        email: queryParams.email,
+        hash,
+      });
+    });
+  }
+
+  openFingerPrintPopup = () => {
+    this.setState({
+      scanFingerPrintModalOpened: true,
+    });
+  }
+
+  handleClose = () => {
+    this.setState({
+      scanFingerPrintModalOpened: false,
+    });
+  };
+
+
   signUp = () => {
     const { signUp } = this.props;
 
@@ -84,10 +117,10 @@ class SignUp extends Component {
 
   render() {
     const {
-      error, user, classes, languageText,
+      error, user, classes, languageText, scanLanguageText, confirmedFingerPrint,
     } = this.props;
     const {
-      email, password, firstName, lastName, nickname,
+      email, password, firstName, lastName, nickname, scanFingerPrintModalOpened,
     } = this.state;
 
     return (
@@ -140,6 +173,16 @@ class SignUp extends Component {
                       variant='contained'
                       color='primary'
                       className={classes.submit}
+                      onClick={this.openFingerPrintPopup}
+                    >
+                        Scan fingerprint
+                    </Button>
+                    <Button
+                      fullWidth
+                      disabled={confirmedFingerPrint !== 'ok'}
+                      variant='contained'
+                      color='primary'
+                      className={classes.submit}
                       onClick={this.signUp}
                     >
                       {languageText.btnSignUp}
@@ -149,6 +192,12 @@ class SignUp extends Component {
               </main>
             )
         }
+        <ScanFingerPrintPopup
+          languageText={scanLanguageText}
+          open={scanFingerPrintModalOpened}
+          handleClose={this.handleClose}
+          fingerPrintAcion={this.createFingerPrint}
+        />
       </Fragment>
     );
   }

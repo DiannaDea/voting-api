@@ -4,14 +4,12 @@ import {
   GET_USER_INIT,
   SIGN_UP_INIT,
   SCAN_FINGERPRINT_INIT,
+  CREATE_FINGERPRINT_INIT,
 } from '../../routes/LoginForm/modules/types';
 import {
   GET_AUTH_STAT_INIT,
   GET_VOTE_STAT_INIT,
 } from '../../routes/Activity/modules/types';
-import {
-  CREATE_FINGERPRINT_INIT,
-} from '../../routes/SignUp/modules/types';
 
 import signIn from './signIn';
 import getUser from './getUser';

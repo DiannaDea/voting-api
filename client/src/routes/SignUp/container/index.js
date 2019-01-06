@@ -1,7 +1,7 @@
 import connect from 'react-redux/es/connect/connect';
 import SignUp from '../components';
-import { checkUserInit, joinGroupInit, createFingerPrintInit } from '../modules/actions';
-import { signUpInit } from '../../LoginForm/modules/actions';
+import { checkUserInit, joinGroupInit } from '../modules/actions';
+import { signUpInit, createFingerPrintInit } from '../../LoginForm/modules/actions';
 
 const mapStateToProps = state => ({
   user: state.joinGroup.userToCheck,
@@ -9,6 +9,8 @@ const mapStateToProps = state => ({
   personalInfo: state.user.fetchData.personalInfo,
   hasJoined: state.joinGroup.status,
   languageText: state.language.text.signUp,
+  scanLanguageText: state.language.text.scanPopup,
+  confirmedFingerPrint: state.user.confirmedFingerPrint,
 });
 
 const mapDispatchToProps = dispatch => ({

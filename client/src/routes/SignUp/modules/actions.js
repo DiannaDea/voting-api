@@ -5,9 +5,6 @@ import {
   CHECK_USER_EXISTS_INIT,
   CHECK_USER_EXISTS_SUCCESS,
   CHECK_USER_EXISTS_ERROR,
-  CREATE_FINGERPRINT_INIT,
-  CREATE_FINGERPRINT_SUCCESS,
-  CREATE_FINGERPRINT_ERROR,
 } from './types';
 
 export const joinGroupInit = payload => ({
@@ -37,20 +34,5 @@ export const checkUserSuccess = payload => ({
 
 export const checkUserError = payload => ({
   type: CHECK_USER_EXISTS_ERROR,
-  payload,
-});
-
-export const createFingerPrintInit = payload => ({
-  type: CREATE_FINGERPRINT_INIT,
-  payload,
-});
-
-export const createFingerPrintSuccess = payload => ({
-  type: CREATE_FINGERPRINT_SUCCESS,
-  payload,
-});
-
-export const createFingerPrintError = payload => ({
-  type: CREATE_FINGERPRINT_ERROR,
   payload,
 });
