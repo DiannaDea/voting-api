@@ -68,6 +68,7 @@ export default {
     email: 'Email Address',
     chooseLanguage: 'Choose app language',
     password: 'Password',
+    buttonScanFingerPrint: 'Scan fingerprint',
     buttonSignIn: 'Sign in',
   },
   createGroup: {
@@ -121,7 +122,11 @@ export default {
       success: 'Successfully joined group',
     },
     signUp: {
-      success: 'Successfylly created account',
+      success: 'Successfully created account',
+    },
+    scan: {
+      success: 'Successfully scaned fingerprint',
+      error: 'Error when scanning. Please try later',
     },
   },
   welcome: 'Welcome to VoteUp!',
@@ -130,5 +135,11 @@ export default {
     votesActivity: 'Votes activity',
     loginHeaders: ['Date', 'IP', 'Browser', 'OS'],
     votesHeaders: ['Date', 'Topic', 'Candidate'],
+  },
+  scanPopup: {
+    header: 'Scan your fingerprint',
+    description: 'Click on button to scan you fingerprint',
+    scanBtn: 'Scan',
+    closeBtn: 'Close',
   },
 };

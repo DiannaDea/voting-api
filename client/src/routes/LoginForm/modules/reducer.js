@@ -98,11 +98,11 @@ export default (state, action) => ({
   [SCAN_FINGERPRINT_SUCCESS]: () => ({
     ...state,
     isFetching: false,
-    confirmedFingerPrint: action.payload,
+    confirmedFingerPrint: (action.payload) ? 'ok' : 'not ok',
   }),
   [SCAN_FINGERPRINT_ERROR]: () => ({
     ...state,
     isFetching: false,
-    confirmedFingerPrint: false,
+    confirmedFingerPrint: 'not ok',
   }),
 });

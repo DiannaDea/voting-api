@@ -31,6 +31,7 @@ export default {
       personalInfo: {},
     },
     error: null,
+    confirmedFingerPrint: null,
   },
   joinGroup: {
     userToCheck: {},

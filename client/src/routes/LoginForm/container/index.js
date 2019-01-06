@@ -5,6 +5,8 @@ import { signInInit, getUserInit, scanFingerPrintInit } from '../modules/actions
 const mapStateToProps = state => ({
   token: state.user.fetchData.token,
   languageText: state.language.text.signIn,
+  scanLanguageText: state.language.text.scanPopup,
+  confirmedFingerPrint: state.user.confirmedFingerPrint,
 });
 
 const mapDispatchToProps = dispatch => ({

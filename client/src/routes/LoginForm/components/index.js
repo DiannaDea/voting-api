@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SelectLang from '../../../components/SelectLang';
+import ScanFingerPrintPopup from './ScanFingerPrint';
 
 import loginBg from '../assets/loginBg.jpg';
 
@@ -56,6 +57,8 @@ class LoginForm extends Component {
     state = {
       email: '',
       password: '',
+      scanFingerPrintModalOpened: false,
+      confirmedFingerPrint: this.props.confirmedFingerPrint,
     };
 
     componentDidUpdate(prevProps) {
@@ -65,6 +68,16 @@ class LoginForm extends Component {
       if (token !== prevProps.token) {
         getUser({ email });
       }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+      if (props.confirmedFingerPrint !== state.confirmedFingerPrint && state.scanFingerPrintModalOpened) {
+        return {
+          confirmedFingerPrint: props.confirmedFingerPrint,
+          scanFingerPrintModalOpened: false,
+        };
+      }
+      return null;
     }
 
     handleChange = (event, field) => {
@@ -84,11 +97,23 @@ class LoginForm extends Component {
       });
     };
 
+    openFingerPrintPopup = () => {
+      this.setState({
+        scanFingerPrintModalOpened: true,
+      });
+    }
+
+    handleClose = () => {
+      this.setState({
+        scanFingerPrintModalOpened: false,
+      });
+    };
+
     render() {
       const {
-        signIn, classes, languageText,
+        signIn, classes, languageText, confirmedFingerPrint, scanLanguageText,
       } = this.props;
-      const { email, password } = this.state;
+      const { email, password, scanFingerPrintModalOpened } = this.state;
 
       return (
         <div className={classes.loginContainer}>
@@ -137,11 +162,12 @@ class LoginForm extends Component {
                         variant='contained'
                         color='primary'
                         className={classes.submit}
-                        onClick={this.scanFingerPrint}
+                        onClick={this.openFingerPrintPopup}
                       >
-                            Scan fingerprint
+                        {languageText.buttonScanFingerPrint}
                       </Button>
                       <Button
+                        disabled={confirmedFingerPrint !== 'ok'}
                         fullWidth
                         variant='contained'
                         color='primary'
@@ -155,7 +181,12 @@ class LoginForm extends Component {
                 </main>
               )
           }
-
+          <ScanFingerPrintPopup
+            languageText={scanLanguageText}
+            open={scanFingerPrintModalOpened}
+            handleClose={this.handleClose}
+            fingerPrintAcion={this.scanFingerPrint}
+          />
         </div>
       );
     }
