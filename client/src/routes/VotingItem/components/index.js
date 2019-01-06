@@ -61,6 +61,13 @@ const TextStatus = styled.h5`
   font-size: 20px !important;
 `;
 
+const VoteButton = styled(Button)`
+    background-color: var(--main-color-yellow) !important;
+    color: white !important;
+    font-weight: bold !important;
+    outline: none !important;
+`;
+
 class VotingItem extends Component {
   state = {
     isVoteModalOpen: false,
@@ -138,7 +145,6 @@ class VotingItem extends Component {
                 <Button
                   disabled={userVoted}
                   variant='contained'
-                  color='primary'
                   onClick={() => this.toggleVoteModal(true)}
                 >
                   {languageText.buttons.vote}

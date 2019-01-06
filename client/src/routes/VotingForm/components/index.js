@@ -6,8 +6,26 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
+import styled from 'styled-components';
 import TopicForm from './TopicForm';
 import ArrayOfObjects from './ArrayOfObjects';
+import {BlueButton, YellowButton} from './styled';
+
+const StyledLabel = styled(StepLabel)`
+  svg {
+    color: var(--main-color-blue) !important;
+  }
+  span {
+    font-family: 'Nunito', sans-serif !important;
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
 
 const styles = theme => ({
   root: {
@@ -141,8 +159,8 @@ class VotingForm extends React.Component {
         <div className={classes.root}>
           <Stepper activeStep={activeStep}>
             {steps.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+              <Step key={label} >
+                <StyledLabel>{label}</StyledLabel>
               </Step>
             ))}
           </Stepper>
@@ -154,15 +172,17 @@ class VotingForm extends React.Component {
             ) : (
               <div>
                 {stepToComponentMap[activeStep] || 'Unknown step'}
-                <div>
-                  <Button
+                <ButtonsContainer>
+                  <BlueButton
                     disabled={activeStep === 0}
                     onClick={this.stepBack}
                     className={classes.button}
+                    variant='contained'
+                    color='primary'
                   >
                     {languageText.buttons.back}
-                  </Button>
-                  <Button
+                  </BlueButton>
+                  <BlueButton
                     variant='contained'
                     color='primary'
                     onClick={this.stepForward}
@@ -172,8 +192,8 @@ class VotingForm extends React.Component {
                       ? languageText.buttons.finish
                       : languageText.buttons.next
                     }
-                  </Button>
-                </div>
+                  </BlueButton>
+                </ButtonsContainer>
               </div>
             )}
           </div>

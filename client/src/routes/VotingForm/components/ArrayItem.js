@@ -8,7 +8,7 @@ const ArrayItem = ({
 }) => (
   <TableRow key={index}>
     <TableCell component='th' scope='row'>
-      {index}
+      {index + 1}
     </TableCell>
     {fields.map((f, i) => (
       <TableCell key={i}>
@@ -16,6 +16,9 @@ const ArrayItem = ({
           label={f.label}
           value={item[f.value]}
           onChange={onChange(f.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
       </TableCell>
     ))}

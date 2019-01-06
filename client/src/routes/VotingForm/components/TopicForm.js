@@ -9,6 +9,10 @@ const TopicForm = ({ onChange, voting, languageText }) => (
         label={languageText.topic}
         value={voting.topic}
         onChange={onChange('topic')}
+        placeholder={languageText.topic}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
     </VotingInputGroup>
     <VotingInputGroup>
@@ -39,6 +43,10 @@ const TopicForm = ({ onChange, voting, languageText }) => (
         label={languageText.votersPercent}
         value={voting.votersPercent}
         onChange={onChange('votersPercent')}
+        placeholder={languageText.votersPercent}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
     </VotingInputGroup>
   </Fragment>

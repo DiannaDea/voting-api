@@ -29,7 +29,7 @@ const HeaderContainer = styled(Toolbar)`
 
 const ButtonCreateVoting = styled(Button)`
     margin-right: 25px !important;
-    background-color: var(--main-color-blue) !important;
+    background-color: var(--main-color-yellow) !important;
     color: white;
     font-weight: bold !important;
 `;

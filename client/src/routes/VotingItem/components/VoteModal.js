@@ -12,8 +12,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
+import { BlueButton } from '../../VotingForm/components/styled';
 
 const AnswerContainer = styled.div`
+  font-family: 'Nunito', sans-serif !important;
   margin: 30px 0;
   & p {
     margin: 0 !important;
@@ -176,13 +178,13 @@ class VoteModal extends Component {
           >
             {languageText.buttons.closeModal}
           </Button>
-          <Button
+          <BlueButton
             variant='contained'
             color='primary'
             onClick={this.sendVote}
           >
             {languageText.buttons.vote}
-          </Button>
+          </BlueButton>
         </DialogActions>
       </Dialog>
     );

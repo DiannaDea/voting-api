@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import ArrayItem from './ArrayItem';
+import { YellowButton } from './styled';
 
 const ArrayOfObjects = ({
   array, fields, onChange, addItemToArray, buttonText,
@@ -21,14 +22,13 @@ const ArrayOfObjects = ({
         ))}
       </TableBody>
     </Table>
-    <Button
+    <YellowButton
       style={{ margin: '10px 0' }}
-      variant='outlined'
       color='primary'
       onClick={addItemToArray}
     >
       {buttonText}
-    </Button>
+    </YellowButton>
   </Fragment>
 );
 
