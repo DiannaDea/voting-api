@@ -1,4 +1,11 @@
 export default theme => ({
+  mainContainer: {
+    width: '100vw',
+    height: '100vh',
+    position: 'absolute',
+    backgroundColor: 'var(--main-color-gray);',
+    top: 0,
+  },
   main: {
     width: 'auto',
     display: 'block',
@@ -35,5 +42,11 @@ export default theme => ({
   },
   memberInput: {
     width: '70%',
+  },
+  submit: {
+    marginTop: '50px',
+  },
+  addMemeber: {
+    marginLeft: '30px',
   },
 });

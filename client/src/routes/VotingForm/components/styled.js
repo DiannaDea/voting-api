@@ -23,6 +23,13 @@ export const BlueButton = styled(Button)`
     font-weight: bold !important;
 `;
 
+export const DarkBlueButton = styled(Button)`
+    margin-right: 25px !important;
+    background-color: var(--main-color-dark-blue) !important;
+    color: white;
+    font-weight: bold !important;
+`;
+
 export const YellowButton = styled(Button)`
     margin-right: 25px !important;
     background-color: var(--main-color-yellow) !important;

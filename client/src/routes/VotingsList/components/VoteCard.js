@@ -20,6 +20,7 @@ const styles = {
 };
 
 const WinnerCard = styled(Card)`
+  font-family: 'Nunito', sans-serif !important;
   width: 250px;
   margin-top: ${props => (props.winner ? '0px' : '50px')};
 `;

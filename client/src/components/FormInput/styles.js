@@ -1,11 +1,18 @@
 export default theme => ({
+  signUpContainer: {
+    width: '100vw',
+    height: '100vh',
+    position: 'absolute',
+    backgroundColor: 'var(--main-color-gray);',
+    top: 0,
+  },
   main: {
     width: 'auto',
     display: 'block',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
+      width: 550,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -24,5 +31,8 @@ export default theme => ({
   form: {
     width: '100%',
     marginTop: theme.spacing.unit,
+  },
+  submit: {
+    marginTop: '20px',
   },
 });

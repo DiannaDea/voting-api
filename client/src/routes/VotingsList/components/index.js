@@ -7,6 +7,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import ResultsModal from './ResultsModal';
+import { BlueButton } from '../../VotingForm/components/styled';
 
 class VotingsList extends Component {
   state = {
@@ -54,13 +55,13 @@ class VotingsList extends Component {
                         {
                           (status === 'finished')
                             ? (
-                              <Button
+                              <BlueButton
                                 variant='contained'
                                 color='primary'
                                 onClick={() => this.toggleVoteModal(true, _id)}
                               >
                                 {languageText.buttons.getResults}
-                              </Button>
+                              </BlueButton>
                             )
                             : null
                         }

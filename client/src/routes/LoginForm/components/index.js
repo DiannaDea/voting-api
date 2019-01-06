@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Fingerprint2 from 'fingerprintjs2';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,12 +9,14 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SelectLang from '../../../components/SelectLang';
 import ScanFingerPrintPopup from './ScanFingerPrint';
+import { BlueButton } from '../../VotingForm/components/styled';
 
 const styles = theme => ({
   loginContainer: {
     width: '100vw',
     height: '100vh',
     position: 'absolute',
+    backgroundColor: 'var(--main-color-gray);',
     top: 0,
   },
   main: {
@@ -153,7 +154,7 @@ class LoginForm extends Component {
                           onChange={event => this.handleChange(event, 'password')}
                         />
                       </FormControl>
-                      <Button
+                      <BlueButton
                         fullWidth
                         variant='contained'
                         color='primary'
@@ -161,8 +162,8 @@ class LoginForm extends Component {
                         onClick={this.openFingerPrintPopup}
                       >
                         {languageText.buttonScanFingerPrint}
-                      </Button>
-                      <Button
+                      </BlueButton>
+                      <BlueButton
                         disabled={confirmedFingerPrint !== 'ok'}
                         fullWidth
                         variant='contained'
@@ -171,7 +172,7 @@ class LoginForm extends Component {
                         onClick={() => signIn({ email, password })}
                       >
                         {languageText.buttonSignIn}
-                      </Button>
+                      </BlueButton>
                     </form>
                   </Paper>
                 </main>

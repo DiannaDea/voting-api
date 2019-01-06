@@ -7,13 +7,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Chip from '@material-ui/core/Chip';
-import GroupAdd from '@material-ui/icons/GroupAdd';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import FaceIcon from '@material-ui/icons/Face';
 import PopupSuccess from './PopupSuccess';
 import styles from './styled';
+import { BlueButton } from '../../VotingForm/components/styled';
+
 
 class CreateGroupForm extends Component {
   state = {
@@ -83,13 +84,10 @@ class CreateGroupForm extends Component {
     } = this.state;
 
     return (
-      <Fragment>
+      <div className={classes.mainContainer}>
         <main className={classes.main}>
           <CssBaseline />
           <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <GroupAdd />
-            </Avatar>
             <Typography component='h1' variant='h5'>
               {languageText.title}
             </Typography>
@@ -129,13 +127,14 @@ class CreateGroupForm extends Component {
                   value={lastMember}
                   onChange={event => this.handleChange(event, 'lastMember')}
                 />
-                <Button
+                <BlueButton
                   variant='contained'
                   color='primary'
+                  className={classes.addMemeber}
                   onClick={this.addMember}
                 >
                   {languageText.buttons.addMember}
-                </Button>
+                </BlueButton>
               </FormControl>
               <Fragment>
                 {
@@ -154,7 +153,7 @@ class CreateGroupForm extends Component {
                   ))
                 }
               </Fragment>
-              <Button
+              <BlueButton
                 fullWidth
                 variant='contained'
                 color='primary'
@@ -162,7 +161,7 @@ class CreateGroupForm extends Component {
                 onClick={this.createGroup}
               >
                 {languageText.buttons.createGroup}
-              </Button>
+              </BlueButton>
             </form>
           </Paper>
         </main>
@@ -171,7 +170,7 @@ class CreateGroupForm extends Component {
           open={successModalOpened}
           handleClose={this.handleClose}
         />
-      </Fragment>
+      </div>
 
     );
   }

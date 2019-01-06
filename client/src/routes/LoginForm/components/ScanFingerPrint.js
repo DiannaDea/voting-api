@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import styled from 'styled-components';
+import { BlueButton } from '../../VotingForm/components/styled';
 
 const FlexDialogContent = styled(DialogContent)`
   display: flex;
@@ -44,7 +45,6 @@ const ScanFingerPrintPopup = ({
               onClick={fingerPrintAcion}
               fullWidth
               variant='contained'
-              color='primary'
             >
               {languageText.scanBtn}
             </Button>

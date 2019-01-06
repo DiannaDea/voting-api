@@ -77,9 +77,9 @@ export default {
       title: 'Have an account?',
       link: 'Sign in!',
     },
-    group: 'Group Name',
-    adminEmail: 'Admin Email',
-    memberEmail: 'MemberEmail',
+    group: 'Group name',
+    adminEmail: 'Admin email',
+    memberEmail: 'Member email',
     buttons: {
       addMember: 'Add member',
       createGroup: 'Create group',

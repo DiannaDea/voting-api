@@ -35,8 +35,18 @@ class ActivityContainer extends React.Component {
     value: 0,
   };
 
+  componentDidMount() {
+    const { userId, getVoteStat, getAuthStat } = this.props;
+
+    if (userId) {
+      getVoteStat({ userId });
+      getAuthStat({ userId });
+    }
+  }
+
   componentDidUpdate(prevProp) {
     const { userId, getVoteStat, getAuthStat } = this.props;
+
     if (userId !== prevProp.userId) {
       getVoteStat({ userId });
       getAuthStat({ userId });
