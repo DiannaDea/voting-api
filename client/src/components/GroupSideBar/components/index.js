@@ -38,7 +38,7 @@ class GroupSideBar extends Component {
                 key={_id}
               >
                 { (_id !== curGroupId) ? <CircleGroupShadow /> : null}
-                <CircleGroupText>{name}</CircleGroupText>
+                <CircleGroupText>{name.slice(0, 3).toUpperCase()}</CircleGroupText>
               </CircleGroup>
             ))
             : null

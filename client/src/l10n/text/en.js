@@ -28,7 +28,7 @@ export default {
     finishText: 'All steps completed - you are finished',
   },
   header: {
-    createVoting: 'Create voting',
+    createVoting: '+ Voting',
     activityTitle: 'Activity',
     accountTitle: 'Account',
     logoutTitle: 'Logout',

@@ -1,4 +1,15 @@
 body {
+    --main-text-color: #008577; 
+    --main-color-gray: #dddfd4;
+    --main-color-yellow: #fae596;
+    --main-color-blue: #3fb0ac;
+    --main-color-dark-blue: #173e43;
     margin: 0;
     padding: 0;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+a:hover, a:link, a:visited, a:active{
+    text-decoration: none !important;
+    font-family: 'Nunito', sans-serif !important;
 }

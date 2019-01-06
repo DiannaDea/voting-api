@@ -34,10 +34,10 @@ class VotingApp extends Component {
             ? (<Redirect to='/login' />)
             : (
               <Grid container spacing={0}>
-                <SideBar item md={1} style={{ backgroundColor: 'gray' }}>
+                <SideBar item md={1} style={{ backgroundColor: 'var(--main-color-dark-blue)' }}>
                   <GroupSideBar />
                 </SideBar>
-                <SideBar item md={3} style={{ backgroundColor: '#c1c1c1' }}>
+                <SideBar item md={3} style={{ backgroundColor: 'var(--main-color-gray)' }}>
                   <NavSideBar />
                 </SideBar>
                 <SideBar item md={8}>

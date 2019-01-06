@@ -9,6 +9,14 @@ import ActivityIcon from '@material-ui/icons/QueryBuilder';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
+const StyledAppBar = styled(AppBar)`
+    background-color: var(--main-color-dark-blue) !important;
+    a:hover, a:link, a:visited, a:active {
+      color: white !important;
+      text-decoration: none;
+    }
+`;
+
 const ControllerPanel = styled.div`
     text-align: right;
 `;
@@ -21,6 +29,9 @@ const HeaderContainer = styled(Toolbar)`
 
 const ButtonCreateVoting = styled(Button)`
     margin-right: 25px !important;
+    background-color: var(--main-color-blue) !important;
+    color: white;
+    font-weight: bold !important;
 `;
 
 // FIXME: fix token management
@@ -37,7 +48,7 @@ class Header extends Component {
       const { languageText } = this.props;
 
       return (
-        <AppBar position='static'>
+        <StyledAppBar position='static'>
           <HeaderContainer>
             <Typography variant='h6' color='inherit' noWrap>
               <Link to='/'>VoteUp</Link>
@@ -60,7 +71,7 @@ class Header extends Component {
               </IconButton>
             </ControllerPanel>
           </HeaderContainer>
-        </AppBar>
+        </StyledAppBar>
       );
     }
 }

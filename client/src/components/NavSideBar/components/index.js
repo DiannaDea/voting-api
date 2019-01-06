@@ -13,6 +13,7 @@ import { NotificationManager } from 'react-notifications';
 const GroupContainer = styled.div`
     width: 100%;
     padding: 6% 4% 0 4%;
+    
 `;
 
 const NavList = styled(List)`
@@ -21,16 +22,32 @@ const NavList = styled(List)`
 
 const ItemText = styled(ListItemText)`
     padding: 0 !important;
+    span {
+      font-family: 'Nunito', sans-serif !important;
+    }
+
+    a:hover, a:link, a:visited, a:active {
+      color: black !important;
+    }
 `;
 
 const SubItemText = styled(ListItemText)`
     padding-left: 30px !important;
+    span {
+      color: var(--main-color-dark-blue) !important;
+      font-weight: bold;
+      font-family: 'Nunito', sans-serif !important;
+    }
+    &:hover {
+      text-decoration: none !important;
+    }
 `;
+
 
 class NavSideBar extends Component {
     state = {
       openNew: true,
-      openRecent: false,
+      openRecent: true,
     };
 
     componentDidUpdate(prevProps) {
@@ -44,7 +61,7 @@ class NavSideBar extends Component {
         getRecentVotings({ userId, groupId: curGroupId });
 
         if (!openNew) this.toggleVotings('new');
-        if (openRecent) this.toggleVotings('recent');
+        if (!openRecent) this.toggleVotings('recent');
       }
 
       if (prevProps.votingsNew.length !== votingsNew.length && votingsNew.length > 0) {
@@ -73,7 +90,7 @@ class NavSideBar extends Component {
         ? votings.map(({ topic, _id }) => (
           <ListItem button key={_id}>
             <Link to={`/app/votings/${_id}?userId=${userId}`}>
-              <SubItemText inset primary={`# ${topic}`} />
+              <SubItemText primary={`# ${topic}`} />
             </Link>
           </ListItem>))
         : null;
@@ -103,7 +120,7 @@ class NavSideBar extends Component {
           <NavList>
             <ListItem button onClick={() => this.toggleVotings('new')}>
               <ItemText inset primary={languageText.new} />
-              <Badge color='primary'>
+              <Badge>
                 {
                   (votingsNew && votingsNew.length > 0)
                     ? `+ ${votingsNew.length}`

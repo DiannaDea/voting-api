@@ -28,7 +28,7 @@ export default {
     finishText: 'Голосування успішно створено!',
   },
   header: {
-    createVoting: 'Створити голосоування',
+    createVoting: '+ Голосування',
     activityTitle: 'Активність',
     accountTitle: 'Профіль',
     logoutTitle: 'Вийти з аккаунта',

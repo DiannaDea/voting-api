@@ -11,6 +11,12 @@ import VoteModal from './VoteModal';
 const VotingInput = styled(TextField)`
    margin: 20px 15px !important;
    width: 40%;
+
+   label {
+     color: var(--main-color-blue) !important;
+     font-weight: bold;
+     font-size: 20px !important;
+   }
 `;
 
 const VotingInputGroup = styled.div`
@@ -24,11 +30,20 @@ const InformationGroup = styled.div`
 `;
 
 const VotingBadge = styled.div`
+    color: var(--main-text-color) !important;
+    font-weight: bold;
     width: ${props => (props.isStatus ? '15%' : '25%')};
-    background-color: #bdbdbd;
+    background-color: #eaeaea;
     text-align: center;
-    padding: 3px;
+    padding: 7px;
     border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    p {
+      margin: 0 !important;
+    }
 `;
 
 const VotingInfoGroup = styled.div`
@@ -38,6 +53,12 @@ const VotingInfoGroup = styled.div`
 
 const VotingRow = styled.div`
     margin: 20px 0;
+`;
+
+const TextStatus = styled.h5`
+  color: var(--main-text-color) !important;
+  font-weight: bold;
+  font-size: 20px !important;
 `;
 
 class VotingItem extends Component {
@@ -101,13 +122,16 @@ class VotingItem extends Component {
       <Fragment>
         <VotingInfoGroup>
           <VotingBadge>
-            {
-              (firstName && lastName)
-                ? `${firstName} ${lastName}`
-                : null
-            }
+            <p>
+              {
+                (firstName && lastName)
+                  ? `${firstName} ${lastName}`
+                  : null
+              }
+
+            </p>
           </VotingBadge>
-          <VotingBadge isStatus>{voting.status}</VotingBadge>
+          <TextStatus>{voting.status[0].toUpperCase() + voting.status.slice(1)}</TextStatus>
           {
             (voting.status === 'pending')
               ? (
