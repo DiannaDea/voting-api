@@ -127,7 +127,7 @@ class SignUp extends Component {
       error, user, classes, languageText, scanLanguageText, confirmedFingerPrint,
     } = this.props;
     const {
-      email, password, firstName, nickname, scanFingerPrintModalOpened,
+      email, password, firstName, lastName, nickname, scanFingerPrintModalOpened,
     } = this.state;
 
     return (
@@ -160,6 +160,12 @@ class SignUp extends Component {
                           fieldLabelName={languageText.firstName}
                           fieldName='firstName'
                           fieldValue={firstName}
+                          onChangeHandler={this.handleChange}
+                        />
+                        <FormInput
+                          fieldLabelName={languageText.lastName}
+                          fieldName='lastName'
+                          fieldValue={lastName}
                           onChangeHandler={this.handleChange}
                         />
                       </div>
