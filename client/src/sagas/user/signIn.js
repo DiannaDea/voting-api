@@ -29,7 +29,7 @@ export default function* signIn({ payload }) {
         email: (email === '1') ? 'test3@test.test' : email,
         password: (password === '1') ? 'qwerty123' : password,
         activity: {
-          date: moment(new Date()).format('YYYY-MM-DDTkk:mm'),
+          date: moment(new Date()).format('YYYY-MM-DDThh:mm'),
           ip: ip.address(),
           browser: browser.name,
           os: browser.os,
