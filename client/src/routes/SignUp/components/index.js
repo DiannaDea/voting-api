@@ -118,7 +118,7 @@ class SignUp extends Component {
     const { signUp } = this.props;
 
     signUp({
-      ...omit(this.state, ['group', 'isAdmin']),
+      ...omit(this.state, ['group', 'isAdmin', 'scanFingerPrintModalOpened', 'confirmedFingerPrint']),
     });
   }
 
