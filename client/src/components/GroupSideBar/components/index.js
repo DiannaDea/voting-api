@@ -17,6 +17,14 @@ class GroupSideBar extends Component {
     }
   }
 
+  componentDidMount() {
+    const { getUser, location } = this.props;
+
+    if (location.search) {
+      getUser({ email: location.search.split('='[1]) });
+    }
+  }
+
   changeCurrentGroup = (newCurGroupId) => {
     const { changeCurrentGroup } = this.props;
     changeCurrentGroup({ newCurGroupId });

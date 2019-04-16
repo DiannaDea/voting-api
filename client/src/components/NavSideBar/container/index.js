@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import NavSideBar from '../components';
 import { getNewVotingsInit, getRecentVotingsInit } from '../modules/actions';
+import { leaveGroupInit } from '../../GroupSideBar/modules/actions';
 
 const mapStateToProps = state => ({
   curGroupId: state.groups.fetchData.curGroupId,
@@ -17,6 +18,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getNewVotings: payload => dispatch(getNewVotingsInit(payload)),
   getRecentVotings: payload => dispatch(getRecentVotingsInit(payload)),
+  leaveGroup: payload => dispatch(leaveGroupInit(payload)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavSideBar));

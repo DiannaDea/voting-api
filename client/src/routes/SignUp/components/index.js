@@ -130,14 +130,16 @@ class SignUp extends Component {
       email, password, firstName, lastName, nickname, scanFingerPrintModalOpened,
     } = this.state;
 
+    const redirectLink = `/app?email=${user.email}`;
+
     return (
       <div className={classes.signUpContainer}>
         {
-          (error && error.status === 400 && email === user.email)
-            ? <Redirect to='/app' />
+          ((error && error.status === 400) || (email === user.email))
+            ? <Redirect to={redirectLink} />
             : (
               <main className={classes.main}>
-                <CssBaseline />
+                {/* <CssBaseline />
                 <Paper className={classes.paper}>
                   <Typography component='h1' variant='h5'>
                     {languageText.title}
@@ -200,7 +202,7 @@ class SignUp extends Component {
 
 
                   </form>
-                </Paper>
+                </Paper> */}
               </main>
             )
         }

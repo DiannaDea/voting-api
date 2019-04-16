@@ -10,6 +10,7 @@ import {
   GET_AUTH_STAT_INIT,
   GET_VOTE_STAT_INIT,
 } from '../../routes/Activity/modules/types';
+import { LEAVE_GROUP_REQUEST } from '../../components/GroupSideBar/modules/types';
 
 import signIn from './signIn';
 import getUser from './getUser';
@@ -18,6 +19,7 @@ import votesStat from './votesActivity';
 import authStat from './getAuthStat';
 import createFingerPrint from './createFingerPrint';
 import scanFingerPrint from './scanFingerPrint';
+import leaveGroup from './leaveGroup';
 
 export default function* groups() {
   yield takeEvery(SIGN_IN_INIT, signIn);
@@ -27,4 +29,5 @@ export default function* groups() {
   yield takeEvery(GET_AUTH_STAT_INIT, authStat);
   yield takeEvery(CREATE_FINGERPRINT_INIT, createFingerPrint);
   yield takeEvery(SCAN_FINGERPRINT_INIT, scanFingerPrint);
+  yield takeEvery(LEAVE_GROUP_REQUEST, leaveGroup);
 }

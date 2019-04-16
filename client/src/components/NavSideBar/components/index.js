@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
@@ -65,7 +66,7 @@ class NavSideBar extends Component {
       }
 
       if (prevProps.votingsNew.length !== votingsNew.length && votingsNew.length > 0) {
-        NotificationManager.success('', languageText.votingsAvailiable);
+        //NotificationManager.success('', languageText.votingsAvailiable);
       }
     }
 
@@ -96,6 +97,11 @@ class NavSideBar extends Component {
         : null;
     };
 
+    handleLeaveGroup = () => {
+      const { leaveGroup, curGroupId, userId } = this.props;
+      leaveGroup({ userId, groupId: curGroupId });
+    };
+
     render() {
       const {
         votingsNew, votingsRecent, groups, curGroupId, firstName, lastName, languageText,
@@ -118,7 +124,7 @@ class NavSideBar extends Component {
             <hr />
           </GroupContainer>
           <NavList>
-            <ListItem button onClick={() => this.toggleVotings('new')}>
+            {/* <ListItem button onClick={() => this.toggleVotings('new')}>
               <ItemText inset primary={languageText.new} />
               <Badge>
                 {
@@ -150,6 +156,11 @@ class NavSideBar extends Component {
             <ListItem button>
               <ItemText inset>
                 <Link to={`/app/groups/${curGroupId}/users`}>{languageText.groupMembers}</Link>
+              </ItemText>
+            </ListItem> */}
+            <ListItem button onClick={() => this.handleLeaveGroup()}>
+              <ItemText inset>
+                Leave group
               </ItemText>
             </ListItem>
           </NavList>
