@@ -91,12 +91,12 @@ class CreateGroupForm extends Component {
             <Typography component='h1' variant='h5'>
               {languageText.title}
             </Typography>
-            {/* <Typography component='p' variant='p'>
+            <Typography component='p' variant='p'>
               {languageText.signIn.title}
               <Link to='/login'>
                 {` ${languageText.signIn.link}`}
               </Link>
-            </Typography> */}
+            </Typography>
             <form className={classes.form}>
               <FormControl margin='normal' required fullWidth>
                 <InputLabel htmlFor='name'>{languageText.group}</InputLabel>

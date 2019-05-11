@@ -87,19 +87,19 @@ class SignUp extends Component {
     });
   };
 
-  createFingerPrint = () => {
-    const { location, createFingerPrint } = this.props;
-    const queryParams = queryString.parse(location.search);
+  // createFingerPrint = () => {
+  //   const { location, createFingerPrint } = this.props;
+  //   const queryParams = queryString.parse(location.search);
 
-    this.setState(queryParams);
+  //   this.setState(queryParams);
 
-    new Fingerprint2().get((hash) => {
-      createFingerPrint({
-        email: queryParams.email,
-        hash,
-      });
-    });
-  }
+  //   new Fingerprint2().get((hash) => {
+  //     createFingerPrint({
+  //       email: queryParams.email,
+  //       hash,
+  //     });
+  //   });
+  // }
 
   openFingerPrintPopup = () => {
     this.setState({
@@ -115,11 +115,13 @@ class SignUp extends Component {
 
 
   signUp = () => {
-    const { signUp } = this.props;
+    const { signUp, history } = this.props;
 
     signUp({
       ...omit(this.state, ['group', 'isAdmin', 'scanFingerPrintModalOpened', 'confirmedFingerPrint']),
     });
+
+    history.push('/login');
   }
 
   render() {
@@ -139,7 +141,7 @@ class SignUp extends Component {
             ? <Redirect to={redirectLink} />
             : (
               <main className={classes.main}>
-                {/* <CssBaseline />
+                <CssBaseline />
                 <Paper className={classes.paper}>
                   <Typography component='h1' variant='h5'>
                     {languageText.title}
@@ -178,7 +180,7 @@ class SignUp extends Component {
                           fieldValue={nickname}
                           onChangeHandler={this.handleChange}
                         />
-                        <BlueButton
+                        {/* <BlueButton
                           fullWidth
                           variant='contained'
                           color='primary'
@@ -186,10 +188,10 @@ class SignUp extends Component {
                           onClick={this.openFingerPrintPopup}
                         >
                           {languageText.buttonScanFingerPrint}
-                        </BlueButton>
+                        </BlueButton> */}
                         <BlueButton
                           fullWidth
-                          disabled={confirmedFingerPrint !== 'ok'}
+                          // disabled={confirmedFingerPrint !== 'ok'}
                           variant='contained'
                           color='primary'
                           className={classes.submit}
@@ -202,16 +204,16 @@ class SignUp extends Component {
 
 
                   </form>
-                </Paper> */}
+                </Paper>
               </main>
             )
         }
-        <ScanFingerPrintPopup
+        {/* <ScanFingerPrintPopup
           languageText={scanLanguageText}
           open={scanFingerPrintModalOpened}
           handleClose={this.handleClose}
           fingerPrintAcion={this.createFingerPrint}
-        />
+        /> */}
       </div>
     );
   }

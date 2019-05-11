@@ -124,7 +124,7 @@ class NavSideBar extends Component {
             <hr />
           </GroupContainer>
           <NavList>
-            {/* <ListItem button onClick={() => this.toggleVotings('new')}>
+            <ListItem button onClick={() => this.toggleVotings('new')}>
               <ItemText inset primary={languageText.new} />
               <Badge>
                 {
@@ -157,7 +157,7 @@ class NavSideBar extends Component {
               <ItemText inset>
                 <Link to={`/app/groups/${curGroupId}/users`}>{languageText.groupMembers}</Link>
               </ItemText>
-            </ListItem> */}
+            </ListItem>
             <ListItem button onClick={() => this.handleLeaveGroup()}>
               <ItemText inset>
                 Leave group

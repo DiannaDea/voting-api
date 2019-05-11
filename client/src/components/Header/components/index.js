@@ -53,7 +53,7 @@ class Header extends Component {
             <Typography variant='h6' color='inherit' noWrap>
               <Link to='/'>VoteUp</Link>
             </Typography>
-            {/* <ControllerPanel>
+            <ControllerPanel>
               <ButtonCreateVoting variant='contained'>
                 <Link to='/app/create/votings'>{languageText.createVoting}</Link>
               </ButtonCreateVoting>
@@ -69,7 +69,7 @@ class Header extends Component {
               >
                 <Logout />
               </IconButton>
-            </ControllerPanel> */}
+            </ControllerPanel>
           </HeaderContainer>
         </StyledAppBar>
       );
