@@ -66,7 +66,7 @@ class NavSideBar extends Component {
       }
 
       if (prevProps.votingsNew.length !== votingsNew.length && votingsNew.length > 0) {
-        //NotificationManager.success('', languageText.votingsAvailiable);
+        NotificationManager.success('', languageText.votingsAvailiable);
       }
     }
 

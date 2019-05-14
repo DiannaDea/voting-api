@@ -87,19 +87,19 @@ class SignUp extends Component {
     });
   };
 
-  // createFingerPrint = () => {
-  //   const { location, createFingerPrint } = this.props;
-  //   const queryParams = queryString.parse(location.search);
+  createFingerPrint = () => {
+    const { location, createFingerPrint } = this.props;
+    const queryParams = queryString.parse(location.search);
 
-  //   this.setState(queryParams);
+    this.setState(queryParams);
 
-  //   new Fingerprint2().get((hash) => {
-  //     createFingerPrint({
-  //       email: queryParams.email,
-  //       hash,
-  //     });
-  //   });
-  // }
+    new Fingerprint2().get((hash) => {
+      createFingerPrint({
+        email: queryParams.email,
+        hash,
+      });
+    });
+  }
 
   openFingerPrintPopup = () => {
     this.setState({
