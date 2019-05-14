@@ -57,7 +57,7 @@ class SignUp extends Component {
       email, group, isAdmin,
     } = this.state;
     const {
-      checkUser, user, joinGroup, personalInfo, hasJoined,
+      checkUser, user, joinGroup, personalInfo, hasJoined, history,
     } = this.props;
 
     if (email !== prevState.email) {
@@ -70,6 +70,7 @@ class SignUp extends Component {
         userId: user._id,
         groupId: group,
       });
+      history.push('/login');
     }
 
     if (Object.keys(personalInfo).length !== Object.keys(prevProps.personalInfo).length && !hasJoined) {
@@ -78,6 +79,7 @@ class SignUp extends Component {
         userId: personalInfo._id,
         groupId: group,
       });
+      history.push('/login');
     }
   }
 
@@ -115,13 +117,11 @@ class SignUp extends Component {
 
 
   signUp = () => {
-    const { signUp, history } = this.props;
+    const { signUp } = this.props;
 
     signUp({
       ...omit(this.state, ['group', 'isAdmin', 'scanFingerPrintModalOpened', 'confirmedFingerPrint']),
     });
-
-    history.push('/login');
   }
 
   render() {
