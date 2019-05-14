@@ -154,7 +154,7 @@ class LoginForm extends Component {
                           onChange={event => this.handleChange(event, 'password')}
                         />
                       </FormControl>
-                      {/* <BlueButton
+                      <BlueButton
                         fullWidth
                         variant='contained'
                         color='primary'
@@ -162,9 +162,9 @@ class LoginForm extends Component {
                         onClick={this.openFingerPrintPopup}
                       >
                         {languageText.buttonScanFingerPrint}
-                      </BlueButton> */}
+                      </BlueButton>
                       <BlueButton
-                        // disabled={confirmedFingerPrint !== 'ok'}
+                        disabled={confirmedFingerPrint !== 'ok'}
                         fullWidth
                         variant='contained'
                         color='primary'
@@ -178,12 +178,12 @@ class LoginForm extends Component {
                 </main>
               )
           }
-          {/* <ScanFingerPrintPopup
+          <ScanFingerPrintPopup
             languageText={scanLanguageText}
             open={scanFingerPrintModalOpened}
             handleClose={this.handleClose}
             fingerPrintAcion={this.scanFingerPrint}
-          /> */}
+          />
         </div>
       );
     }

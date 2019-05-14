@@ -180,7 +180,7 @@ class SignUp extends Component {
                           fieldValue={nickname}
                           onChangeHandler={this.handleChange}
                         />
-                        {/* <BlueButton
+                        <BlueButton
                           fullWidth
                           variant='contained'
                           color='primary'
@@ -188,10 +188,10 @@ class SignUp extends Component {
                           onClick={this.openFingerPrintPopup}
                         >
                           {languageText.buttonScanFingerPrint}
-                        </BlueButton> */}
+                        </BlueButton>
                         <BlueButton
                           fullWidth
-                          // disabled={confirmedFingerPrint !== 'ok'}
+                          disabled={confirmedFingerPrint !== 'ok'}
                           variant='contained'
                           color='primary'
                           className={classes.submit}
@@ -208,12 +208,12 @@ class SignUp extends Component {
               </main>
             )
         }
-        {/* <ScanFingerPrintPopup
+        <ScanFingerPrintPopup
           languageText={scanLanguageText}
           open={scanFingerPrintModalOpened}
           handleClose={this.handleClose}
           fingerPrintAcion={this.createFingerPrint}
-        /> */}
+        />
       </div>
     );
   }
