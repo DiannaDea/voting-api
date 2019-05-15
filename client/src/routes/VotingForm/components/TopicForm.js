@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { VotingInput, VotingInputGroup } from './styled';
 
-const TopicForm = ({ onChange, voting, languageText }) => (
+const TopicForm = ({
+ onChange, voting, languageText, errors 
+}) => (
   <Fragment>
     <VotingInputGroup>
       <VotingInput
@@ -27,6 +30,7 @@ const TopicForm = ({ onChange, voting, languageText }) => (
         onChange={onChange('dateStart')}
       />
       <VotingInput
+        error={errors.dateEnd}
         id='datetime-local'
         label={languageText.votingEnd}
         type='datetime-local'
@@ -35,10 +39,13 @@ const TopicForm = ({ onChange, voting, languageText }) => (
         }}
         value={voting.dateEnd}
         onChange={onChange('dateEnd')}
+        helperText={(errors.dateEnd) ? 'Must be after time of voting start' : ''}
       />
     </VotingInputGroup>
     <VotingInputGroup>
       <VotingInput
+        error={errors.votersPercent}
+        required
         type='number'
         label={languageText.votersPercent}
         value={voting.votersPercent}
@@ -47,6 +54,7 @@ const TopicForm = ({ onChange, voting, languageText }) => (
         InputLabelProps={{
           shrink: true,
         }}
+        helperText={(errors.votersPercent) ? 'Must be greater than 15 and less that 100' : ''}
       />
     </VotingInputGroup>
   </Fragment>

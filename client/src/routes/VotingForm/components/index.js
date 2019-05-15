@@ -9,7 +9,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 import TopicForm from './TopicForm';
 import ArrayOfObjects from './ArrayOfObjects';
-import {BlueButton, YellowButton} from './styled';
+import { BlueButton, YellowButton } from './styled';
 
 const StyledLabel = styled(StepLabel)`
   svg {
@@ -49,6 +49,12 @@ class VotingForm extends React.Component {
         dateEnd: '',
         votersPercent: '',
       },
+      errors: {
+        topic: false,
+        dateStart: false,
+        dateEnd: false,
+        votersPercent: false,
+      },
       weights: [],
       candidates: [],
     };
@@ -73,13 +79,39 @@ class VotingForm extends React.Component {
       };
     });
 
-    objectChange = namespace => inputName => ({ target: { value } }) => this.setState(state => ({
-      ...state,
-      [namespace]: {
-        ...state[namespace],
-        [inputName]: value,
-      },
-    }));
+    objectChange = namespace => inputName => ({ target: { value } }) => {
+      if (inputName === 'votersPercent') {
+        this.setState((state) => {
+          return {
+            ...state,
+            errors: {
+              ...state.errors,
+              votersPercent: (parseInt(value) < 15 || parseInt(value) > 100),
+            },
+          };
+        });
+      }
+      if (inputName === 'dateEnd') {
+        this.setState((state) => {
+          return {
+            ...state,
+            errors: {
+              ...state.errors,
+              dateEnd: !moment(value).isAfter(this.state.dateStart),
+            },
+          };
+        });
+      }
+      this.setState((state) => {
+        return {
+          ...state,
+          [namespace]: {
+            ...state[namespace],
+            [inputName]: value,
+          },
+        };
+      });
+    };
 
     stepForward = () => {
       const {
@@ -118,11 +150,16 @@ class VotingForm extends React.Component {
       }));
     };
 
+    checkForErrors = () => {
+      const { errors } = this.state;
+      return Object.values(errors).some(item => item);
+    }
+
     render() {
       const { state, props } = this;
       const { classes, languageText } = props;
 
-      const { activeStep } = state;
+      const { activeStep, errors } = state;
 
       const { steps } = languageText;
 
@@ -131,6 +168,7 @@ class VotingForm extends React.Component {
           onChange={this.objectChange('voting')}
           voting={state.voting}
           languageText={languageText.forms.topicForm}
+          errors={errors}
         />,
         <ArrayOfObjects
           onChange={this.changeArrayValue('weights')}
@@ -159,7 +197,7 @@ class VotingForm extends React.Component {
         <div className={classes.root}>
           <Stepper activeStep={activeStep}>
             {steps.map(label => (
-              <Step key={label} >
+              <Step key={label}>
                 <StyledLabel>{label}</StyledLabel>
               </Step>
             ))}
@@ -174,7 +212,7 @@ class VotingForm extends React.Component {
                 {stepToComponentMap[activeStep] || 'Unknown step'}
                 <ButtonsContainer>
                   <BlueButton
-                    disabled={activeStep === 0}
+                    disabled={activeStep === 0 || this.checkForErrors()}
                     onClick={this.stepBack}
                     className={classes.button}
                     variant='contained'
@@ -183,6 +221,7 @@ class VotingForm extends React.Component {
                     {languageText.buttons.back}
                   </BlueButton>
                   <BlueButton
+                    disabled={this.checkForErrors()}
                     variant='contained'
                     color='primary'
                     onClick={this.stepForward}

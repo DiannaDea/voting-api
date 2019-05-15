@@ -3,19 +3,19 @@ export default {
     steps: ['Choose voting topic', 'Set coefficients', 'Add candidates'],
     forms: {
       topicForm: {
-        topic: 'Topic',
-        votingStart: 'Voting start',
-        votingEnd: 'Voting end',
-        votersPercent: 'Voters percent',
+        topic: 'Topic*',
+        votingStart: 'Voting start*',
+        votingEnd: 'Voting end*',
+        votersPercent: 'Voters percent*',
       },
       weightForm: {
-        name: 'Name',
-        cost: 'Cost',
-        question: 'Question',
+        name: 'Name*',
+        cost: 'Cost*',
+        question: 'Question*',
       },
       candidatesForm: {
-        name: 'Name',
-        description: 'Description',
+        name: 'Name*',
+        description: 'Description*',
       },
     },
     buttons: {
