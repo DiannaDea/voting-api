@@ -155,6 +155,19 @@ class VotingForm extends React.Component {
       return Object.values(errors).some(item => item);
     }
 
+    checkIfEmpty = () => {
+      const { voting, activeStep, weights, candidates } = this.state;
+      if (activeStep === 0) {
+        return !voting.topic.length || !voting.dateStart.length || !voting.dateEnd.length || !voting.votersPercent.length;
+      }
+      if (activeStep === 1) {
+        return !weights.length;
+      }
+      if (activeStep === 2) {
+        return !candidates.length;
+      }
+    }
+
     render() {
       const { state, props } = this;
       const { classes, languageText } = props;
@@ -211,7 +224,7 @@ class VotingForm extends React.Component {
               <div>
                 {stepToComponentMap[activeStep] || 'Unknown step'}
                 <ButtonsContainer>
-                  <BlueButton
+                  {/* <BlueButton
                     disabled={activeStep === 0 || this.checkForErrors()}
                     onClick={this.stepBack}
                     className={classes.button}
@@ -219,9 +232,9 @@ class VotingForm extends React.Component {
                     color='primary'
                   >
                     {languageText.buttons.back}
-                  </BlueButton>
+                  </BlueButton> */}
                   <BlueButton
-                    disabled={this.checkForErrors()}
+                    disabled={this.checkForErrors() || this.checkIfEmpty()}
                     variant='contained'
                     color='primary'
                     onClick={this.stepForward}
