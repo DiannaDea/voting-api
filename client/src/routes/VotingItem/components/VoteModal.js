@@ -154,6 +154,7 @@ class VoteModal extends Component {
                           <AnswerContainer key={coeff._id}>
                             <p>{coeff.question}</p>
                             <AnswerInput
+                              type='number'
                               placeholder={languageText.vote.enterAnswer}
                               inputProps={{
                                 'aria-label': 'Description',
