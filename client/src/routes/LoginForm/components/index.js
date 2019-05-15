@@ -134,8 +134,12 @@ class LoginForm extends Component {
         signIn, classes, languageText, confirmedFingerPrint, scanLanguageText,
       } = this.props;
       const {
- email, password, scanFingerPrintModalOpened, emailError, passwordError 
-} = this.state;
+        email,
+        password,
+        scanFingerPrintModalOpened,
+        emailError,
+        passwordError,
+      } = this.state;
 
       return (
         <div className={classes.loginContainer}>

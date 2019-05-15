@@ -23,6 +23,7 @@ export default theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    paddingTop: '35px',
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -45,8 +46,11 @@ export default theme => ({
   },
   submit: {
     marginTop: '50px',
+    marginBottom: '30px',
   },
   addMemeber: {
+    marginTop: '20px',
     marginLeft: '30px',
+    height: '50px',
   },
 });

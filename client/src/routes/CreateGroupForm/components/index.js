@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import FaceIcon from '@material-ui/icons/Face';
@@ -24,6 +25,8 @@ class CreateGroupForm extends Component {
     lastMember: '',
     successModalOpened: false,
     prevPropsGroupId: this.props.groupId,
+    adminEmailError: false,
+    memberEmailError: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -36,9 +39,28 @@ class CreateGroupForm extends Component {
     return null;
   }
 
+  validateEmail = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   handleChange = (event, field) => {
     this.setState({
       [field]: event.target.value,
+    });
+  };
+
+  handleChangeAdminEmail = (event) => {
+    this.setState({
+      adminEmail: event.target.value,
+      adminEmailError: !this.validateEmail(event.target.value),
+    });
+  };
+
+  handleChangeMemberEmail = (event) => {
+    this.setState({
+      lastMember: event.target.value,
+      memberEmailError: !this.validateEmail(event.target.value),
     });
   };
 
@@ -80,7 +102,13 @@ class CreateGroupForm extends Component {
   render() {
     const { classes, languageText } = this.props;
     const {
-      name, adminEmail, membersEmails, lastMember, successModalOpened,
+      name,
+      adminEmail,
+      membersEmails,
+      lastMember,
+      successModalOpened,
+      adminEmailError,
+      memberEmailError,
     } = this.state;
 
     return (
@@ -111,23 +139,37 @@ class CreateGroupForm extends Component {
               <FormControl margin='normal' required fullWidth>
                 <InputLabel htmlFor='adminEmail'>{languageText.adminEmail}</InputLabel>
                 <Input
+                  error={adminEmailError}
                   name='adminEmail'
                   id='adminEmail'
                   type='email'
                   value={adminEmail}
-                  onChange={event => this.handleChange(event, 'adminEmail')}
+                  onChange={event => this.handleChangeAdminEmail(event)}
                 />
+                {
+                  (adminEmailError)
+                    ? <FormHelperText error={adminEmailError}>Invalid email</FormHelperText>
+                    : null
+                }
               </FormControl>
-              <FormControl className={classes.addMemberControll} margin='normal' required fullWidth>
-                <InputLabel htmlFor='memberEmail'>{languageText.memberEmail}</InputLabel>
-                <Input
-                  className={classes.memberInput}
-                  name='memberEmail'
-                  id='memberEmail'
-                  value={lastMember}
-                  onChange={event => this.handleChange(event, 'lastMember')}
-                />
+              <div className={classes.addMemberControll}>
+                <FormControl margin='normal' required fullWidth>
+                  <InputLabel htmlFor='memberEmail'>{languageText.memberEmail}</InputLabel>
+                  <Input
+                    error={memberEmailError}
+                    name='memberEmail'
+                    id='memberEmail'
+                    value={lastMember}
+                    onChange={event => this.handleChangeMemberEmail(event)}
+                  />
+                  {
+                    (memberEmailError)
+                      ? <FormHelperText error={memberEmailError}>Invalid email</FormHelperText>
+                      : null
+                  }
+                </FormControl>
                 <BlueButton
+                  disabled={!lastMember.length || memberEmailError}
                   variant='contained'
                   color='primary'
                   className={classes.addMemeber}
@@ -135,7 +177,7 @@ class CreateGroupForm extends Component {
                 >
                   {languageText.buttons.addMember}
                 </BlueButton>
-              </FormControl>
+              </div>
               <Fragment>
                 {
                   membersEmails.map((email, index) => (
@@ -154,6 +196,7 @@ class CreateGroupForm extends Component {
                 }
               </Fragment>
               <BlueButton
+                disabled={!name.length || !adminEmail.length || adminEmailError || memberEmailError}
                 fullWidth
                 variant='contained'
                 color='primary'

@@ -81,7 +81,7 @@ export default {
     adminEmail: 'Admin email',
     memberEmail: 'Member email',
     buttons: {
-      addMember: 'Add member',
+      addMember: 'Add',
       createGroup: 'Create group',
       close: 'Close',
     },
@@ -127,7 +127,7 @@ export default {
     },
     scan: {
       success: 'Successfully scaned fingerprint',
-      error: 'Error when scanning. Incorrect credentials',
+      error: 'Error when scanning. User with such email doesn\'t exist',
     },
   },
   welcome: 'Welcome to VoteUp!',
