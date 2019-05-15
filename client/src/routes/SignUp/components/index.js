@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Fingerprint2 from 'fingerprintjs2';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import queryString from 'query-string';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -158,6 +158,12 @@ class SignUp extends Component {
                 <Paper className={classes.paper}>
                   <Typography component='h1' variant='h5'>
                     {languageText.title}
+                  </Typography>
+                  <Typography component='p' variant='p'>
+                    Have an account? 
+                    <Link to='/login'>
+                       {` Sign in!`}
+                    </Link>
                   </Typography>
                   <form className={classes.form}>
                     <SignUpContainer>
