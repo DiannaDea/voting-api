@@ -33,6 +33,7 @@ class SignUp extends Component {
     nickname: '',
     scanFingerPrintModalOpened: false,
     confirmedFingerPrint: this.props.confirmedFingerPrint,
+    passwordError: false,
   };
 
   componentDidMount() {
@@ -83,6 +84,18 @@ class SignUp extends Component {
     }
   }
 
+  validatePassword = (password) => {
+    const re = /^[a-zA-Z0-9]{6,30}$/;
+    return re.test(password);
+  }
+
+  handleChangePassword = (event) => {
+    this.setState({
+      password: event.target.value,
+      passwordError: !this.validatePassword(event.target.value),
+    });
+  };
+
   handleChange = (event, field) => {
     this.setState({
       [field]: event.target.value,
@@ -120,7 +133,7 @@ class SignUp extends Component {
     const { signUp } = this.props;
 
     signUp({
-      ...omit(this.state, ['group', 'isAdmin', 'scanFingerPrintModalOpened', 'confirmedFingerPrint']),
+      ...omit(this.state, ['group', 'isAdmin', 'scanFingerPrintModalOpened', 'confirmedFingerPrint', 'passwordError']),
     });
   }
 
@@ -129,7 +142,7 @@ class SignUp extends Component {
       error, user, classes, languageText, scanLanguageText, confirmedFingerPrint,
     } = this.props;
     const {
-      email, password, firstName, lastName, nickname, scanFingerPrintModalOpened,
+      email, password, firstName, lastName, nickname, scanFingerPrintModalOpened, passwordError,
     } = this.state;
 
     const redirectLink = `/app?email=${user.email}`;
@@ -150,17 +163,6 @@ class SignUp extends Component {
                     <SignUpContainer>
                       <div className='half'>
                         <FormInput
-                          fieldLabelName={languageText.email}
-                          fieldName='email'
-                          fieldValue={email}
-                        />
-                        <FormInput
-                          fieldLabelName={languageText.password}
-                          fieldName='password'
-                          fieldValue={password}
-                          onChangeHandler={this.handleChange}
-                        />
-                        <FormInput
                           fieldLabelName={languageText.firstName}
                           fieldName='firstName'
                           fieldValue={firstName}
@@ -172,15 +174,28 @@ class SignUp extends Component {
                           fieldValue={lastName}
                           onChangeHandler={this.handleChange}
                         />
-                      </div>
-                      <div className='half'>
                         <FormInput
                           fieldLabelName={languageText.nickName}
                           fieldName='nickname'
                           fieldValue={nickname}
                           onChangeHandler={this.handleChange}
                         />
+                      </div>
+                      <div className='half'>
+                        <FormInput
+                          fieldLabelName={languageText.email}
+                          fieldName='email'
+                          fieldValue={email}
+                        />
+                        <FormInput
+                          fieldLabelName={languageText.password}
+                          fieldName='password'
+                          fieldValue={password}
+                          onChangeHandler={this.handleChangePassword}
+                          passwordError={passwordError}
+                        />
                         <BlueButton
+                          disabled={!firstName.length || !lastName.length || !nickname.length || !password.length || passwordError || confirmedFingerPrint === 'ok'}
                           fullWidth
                           variant='contained'
                           color='primary'
