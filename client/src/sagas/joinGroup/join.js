@@ -10,7 +10,7 @@ import {
   joinGroupError,
 } from '../../routes/SignUp/modules/actions';
 
-const curLang = localStorage.getItem('lang');
+const curLang = 'en';
 const { notifications } = text[curLang];
 
 export default function* joinGroup({ payload }) {

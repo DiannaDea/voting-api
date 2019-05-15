@@ -13,7 +13,7 @@ import {
   signInError,
 } from '../../routes/LoginForm/modules/actions';
 
-const curLang = localStorage.getItem('lang');
+const curLang = 'en';
 const { notifications } = text[curLang];
 
 const browser = detect();

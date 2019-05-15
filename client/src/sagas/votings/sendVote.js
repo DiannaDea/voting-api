@@ -11,7 +11,7 @@ import {
   sendVoteError,
 } from '../../routes/VotingItem/modules/actions';
 
-const curLang = localStorage.getItem('lang');
+const curLang = 'en';
 const { notifications } = text[curLang];
 
 export default function* sendVote({ payload }) {

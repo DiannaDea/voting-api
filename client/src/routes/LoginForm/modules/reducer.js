@@ -49,6 +49,7 @@ export default (state, action) => ({
       token: null,
     },
     error: state.error,
+    confirmedFingerPrint: 'not ok',
   }),
   [GET_USER_INIT]: () => ({
     ...state,

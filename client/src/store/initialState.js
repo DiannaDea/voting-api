@@ -1,6 +1,6 @@
 import text from '../l10n/text';
 
-const curLang = localStorage.getItem('lang') || 'en';
+const curLang = 'en';
 
 export default {
   groups: {

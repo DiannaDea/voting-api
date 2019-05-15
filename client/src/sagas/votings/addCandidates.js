@@ -10,7 +10,7 @@ import {
   addCandidatesError,
 } from '../../routes/VotingForm/modules/actions';
 
-const curLang = localStorage.getItem('lang');
+const curLang = 'en';
 const { notifications } = text[curLang];
 
 export default function* addCandidates({ payload }) {

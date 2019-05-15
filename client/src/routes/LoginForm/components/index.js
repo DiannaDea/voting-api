@@ -7,7 +7,7 @@ import { Redirect, Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import SelectLang from '../../../components/SelectLang';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import ScanFingerPrintPopup from './ScanFingerPrint';
 import { BlueButton } from '../../VotingForm/components/styled';
 
@@ -48,6 +48,9 @@ const styles = theme => ({
   submit: {
     marginTop: `${theme.spacing.unit * 3}px`,
   },
+  step: {
+    marginTop: '20px',
+  },
 });
 
 class LoginForm extends Component {
@@ -56,6 +59,8 @@ class LoginForm extends Component {
       password: '',
       scanFingerPrintModalOpened: false,
       confirmedFingerPrint: this.props.confirmedFingerPrint,
+      emailError: false,
+      passwordError: false,
     };
 
     componentDidUpdate(prevProps) {
@@ -77,9 +82,27 @@ class LoginForm extends Component {
       return null;
     }
 
-    handleChange = (event, field) => {
+    validateEmail = (email) => {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    validatePassword = (password) => {
+      const re = /^[a-zA-Z0-9]{6,30}$/;
+      return re.test(password);
+    }
+
+    handleChangeEmail = (event) => {
       this.setState({
-        [field]: event.target.value,
+        email: event.target.value,
+        emailError: !this.validateEmail(event.target.value),
+      });
+    };
+
+    handleChangePassword = (event) => {
+      this.setState({
+        password: event.target.value,
+        passwordError: !this.validatePassword(event.target.value),
       });
     };
 
@@ -110,7 +133,9 @@ class LoginForm extends Component {
       const {
         signIn, classes, languageText, confirmedFingerPrint, scanLanguageText,
       } = this.props;
-      const { email, password, scanFingerPrintModalOpened } = this.state;
+      const {
+ email, password, scanFingerPrintModalOpened, emailError, passwordError 
+} = this.state;
 
       return (
         <div className={classes.loginContainer}>
@@ -123,38 +148,50 @@ class LoginForm extends Component {
                     <Typography component='h1' variant='h5'>
                       {languageText.title}
                     </Typography>
-                    <Typography component='p' variant='p'>
-                      {languageText.createGroup.title}
-                      <Link to='/create/group'>
-                        {` ${languageText.createGroup.link}`}
-                      </Link>
-                    </Typography>
                     <form className={classes.form}>
-                      <FormControl margin='normal' fullWidth>
-                        <InputLabel htmlFor='email'>{languageText.chooseLanguage}</InputLabel>
-                        <SelectLang />
-                      </FormControl>
+                      <Typography align='center' className={classes.step} component='p' variant='p'>
+                        Step 1. Fill in email and password
+                      </Typography>
                       <FormControl margin='normal' required fullWidth>
-                        <InputLabel htmlFor='lang'>{languageText.email}</InputLabel>
+                        <InputLabel htmlFor='email'>{languageText.email}</InputLabel>
                         <Input
-                          id='lang'
-                          name='lang'
+                          error={emailError}
+                          required
+                          id='email'
+                          name='email'
                           autoFocus
                           value={email}
-                          onChange={event => this.handleChange(event, 'email')}
+                          type='email'
+                          onChange={event => this.handleChangeEmail(event)}
                         />
+                        {
+                          (emailError)
+                            ? <FormHelperText error={emailError}>Invalid email</FormHelperText>
+                            : null
+                        }
                       </FormControl>
                       <FormControl margin='normal' required fullWidth>
                         <InputLabel htmlFor='password'>{languageText.password}</InputLabel>
                         <Input
+                          error={passwordError}
+                          required
                           name='password'
                           type='password'
                           id='password'
                           value={password}
-                          onChange={event => this.handleChange(event, 'password')}
+                          onChange={event => this.handleChangePassword(event)}
                         />
+                        {
+                          (passwordError)
+                            ? <FormHelperText error={passwordError}>Invalid password. Must contain at least 6 symbols. Only numbers and letters are allowed</FormHelperText>
+                            : null
+                        }
                       </FormControl>
+                      <Typography align='center' className={classes.step} component='p' variant='p'>
+                        Step 2. Scan fingerprint
+                      </Typography>
                       <BlueButton
+                        disabled={!email.length || !password.length || emailError || passwordError || confirmedFingerPrint === 'ok'}
                         fullWidth
                         variant='contained'
                         color='primary'
@@ -163,6 +200,9 @@ class LoginForm extends Component {
                       >
                         {languageText.buttonScanFingerPrint}
                       </BlueButton>
+                      <Typography align='center' className={classes.step} component='p' variant='p'>
+                        Step 3. Sign in
+                      </Typography>
                       <BlueButton
                         disabled={confirmedFingerPrint !== 'ok'}
                         fullWidth
@@ -174,6 +214,12 @@ class LoginForm extends Component {
                         {languageText.buttonSignIn}
                       </BlueButton>
                     </form>
+                    <Typography className={classes.step} component='p' variant='p'>
+                      {languageText.createGroup.title}
+                      <Link to='/create/group'>
+                        {` ${languageText.createGroup.link}`}
+                      </Link>
+                    </Typography>
                   </Paper>
                 </main>
               )

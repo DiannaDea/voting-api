@@ -127,7 +127,7 @@ export default {
     },
     scan: {
       success: 'Successfully scaned fingerprint',
-      error: 'Error when scanning. Please try later',
+      error: 'Error when scanning. Incorrect credentials',
     },
   },
   welcome: 'Welcome to VoteUp!',

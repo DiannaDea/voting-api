@@ -4,7 +4,7 @@ import Select from '@material-ui/core/Select';
 
 class SelectLang extends Component {
   state = {
-    curLanguage: localStorage.getItem('lang') || 'en',
+    curLanguage: 'en',
   };
 
   changeLanguage = (event) => {
